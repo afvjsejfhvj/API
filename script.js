@@ -31,5 +31,30 @@ app.post('/aulas', (req, res)=>{
     res.status(201).send(dados)
 }) 
 
+app.put('/aulas/:id', (req, res) =>{
+    //pegar id da rota
+    const id = req.params.id
+    // procurar o id do array
+    const usuarios = banco.find(user => user.id == id) 
+    if (!usuarios){
+        res.status(404).json({Msg:"usuario nao encontrado"})
+    } 
+    //modificar os campos
+    //atualizar o array
+    
+    res.send('ok')
+})
+
+app.delete('/aulas/:id', (req,res)=>{
+    const id = req.params.id
+    const userIndex = banco.findIndex(user => user.id == id) 
+    if (userIndex === -1){
+        res.status(404).json({Msg:"usuario nao encontrado"})
+    }
+
+    banco.splice(userIndex, 1)
+    res.status(204).send()
+})
+
 app.listen(PORT, ()=>{console.log('servidor online')}) // ()=>{'executa isso'} isso é um callback, coloca o servidor para ouvir 
 

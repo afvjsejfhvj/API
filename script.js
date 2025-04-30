@@ -91,8 +91,8 @@ app.delete('/aulas/:id', (req,res)=>{
         const aulas = JSON.parse(data)
         const aulaIndex = aulas.findIndex(aula => aula.id == id);
         if(aulaIndex !== -1){
-            aulas.splice(aulaIndex, 1)
-            fs.writeFile( 'bancoDeDados. json', JSON. stringify(aulas), (err) => {
+            aulas.splice(aulaIndex, 1);            
+            fs.writeFile( 'bancoDeDados.json', JSON.stringify(aulas), (err) => {
             if (err) {
                 res.status(500).json({ msg: 'Erro no servidor' })
             }
@@ -105,3 +105,4 @@ app.delete('/aulas/:id', (req,res)=>{
 })
 
 app.listen(PORT, ()=>{console.log('servidor online')}) // ()=>{'executa isso'} isso é um callback, coloca o servidor para ouvir 
+
